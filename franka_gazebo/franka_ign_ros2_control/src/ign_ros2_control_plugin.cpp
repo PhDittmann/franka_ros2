@@ -449,7 +449,7 @@ void IgnitionROS2ControlPlugin::Configure(
   }
 
   for (unsigned int i = 0; i < control_hardware_info.size(); ++i) {
-    std::string robot_hw_sim_type_str_ = control_hardware_info[i].hardware_class_type;
+    std::string robot_hw_sim_type_str_ = control_hardware_info[i].hardware_plugin_name;
     std::unique_ptr<ign_ros2_control::IgnitionSystemInterface> ignitionSystem;
     RCLCPP_DEBUG(
       this->dataPtr->node_->get_logger(), "Load hardware interface %s ...",
