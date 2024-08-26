@@ -57,13 +57,11 @@ RUN python3 -m pip install -U \
     pytest
 
 RUN mkdir ~/source_code    
-RUN cd ~/source_code && git clone https://github.com/frankaemika/libfranka.git \
+RUN cd ~/source_code \
+    && git clone --recursive https://github.com/frankaemika/libfranka.git -b 0.9.2 \
     && cd libfranka \
-    && git switch fr3-develop \
-    && git submodule init \
-    && git submodule update \
-    && mkdir build && cd build \
-    && cmake -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF  .. \
+    && cmake -B build -S . -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
+    && cd build \
     && make franka -j$(nproc) \
     && cpack -G DEB \
     && sudo dpkg -i libfranka*.deb
