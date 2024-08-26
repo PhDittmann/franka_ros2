@@ -1,6 +1,15 @@
 # ROS 2 integration for Franka Emika research robots
 
-[![CI](https://github.com/frankaemika/franka_ros2/actions/workflows/ci.yml/badge.svg)](https://github.com/frankaemika/franka_ros2/actions/workflows/ci.yml)
+This repository is a fork of [frankaemika/franka_ros2](https://github.com/frankaemika/franka_ros2), because support for Franka Emika Robot (FER) was stopped end of 2023.
+
+```shell
+mkdir ~/ros2_ws && cd ~/ros2_ws
+git clone --recursive https://github.com/frankaemika/libfranka.git -b 0.9.2 src/libfranka
+git clone https://github.com/PhDittmann/franka_ros2.git -b fer src/franka_ros2
+colcon build --packages-up-to libfranka
+source install/setup.bash
+colcon build
+```
 
 See the [Franka Control Interface (FCI) documentation][fci-docs] for more information.
 
